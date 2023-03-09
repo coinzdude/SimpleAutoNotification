@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission-sdk-23 android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-feature
+        android:name="android.software.car.templates_host"
+        android:required="false" />
+    <!-- For Navigation -->
+    <!--    <uses-permission android:name="androidx.car.app.ACCESS_SURFACE"/>-->
+    <!-- For Parking -->
+    <!--    <uses-permission-sdk-23 android:name="com.google.android.gms.permission.AD_ID" />-->
+    <uses-permission android:name="androidx.car.app.NAVIGATION_TEMPLATES"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application
+        android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
+        android:exported="true"
+        android:extractNativeLibs="false"
+        android:icon="@drawable/geofence_in"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/geofence_in"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.DayNight"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="androidx.car.app.minCarApiLevel"
+            android:value="1"
+            tools:ignore="MetadataTagInsideApplicationTag" />
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"
+            tools:ignore="MetadataTagInsideApplicationTag" />
+        <activity
+            android:name=".MainActivity"
+            android:allowBackup="true"
+            android:exported="true"
+            android:launchMode="singleTop"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".SGService"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService" />
+                <category android:name="androidx.car.app.category.IOT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

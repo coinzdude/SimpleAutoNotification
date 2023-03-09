@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+//    id 'com.google.gms.google-services'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk rootProject.compileSdk
+    compileSdkPreview "UpsideDownCake"
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion rootProject.composeVersion
+    }
+
+    defaultConfig {
+        applicationId "com.lusion.simpleautonotification"
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
+        versionCode project.versionCode
+        versionName project.versionName
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+//            debuggable true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        mobile {
+            java.srcDirs('src/mobile/java')
+        }
+    }
+
+    flavorDimensions.add("type")
+    productFlavors {
+        mobile {
+            dimension 'type'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    namespace 'com.lusion.simpleautonotification'
+}
+
+dependencies {
+//    implementation "androidx.activity:activity-ktx:1.8.0-alpha01"
+    implementation "androidx.activity:activity-compose:1.6.1"
+    implementation "androidx.car.app:app:1.4.0-alpha01"
+    implementation "androidx.compose.animation:animation-graphics:1.3.3"
+    implementation "androidx.compose.foundation:foundation:1.4.0-rc01"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.3.3"
+    implementation "androidx.compose.material3:material3:1.1.0-alpha08"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.0-alpha08"
+    implementation "androidx.core:core-ktx:1.9.0"
+    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation "androidx.work:work-runtime-ktx:2.8.0"
+    implementation "com.android.volley:volley:1.2.1"
+
+    debugImplementation 'androidx.compose.ui:ui-tooling:1.3.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+}
